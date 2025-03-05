@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Məhsul Siyahısı</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>GTIN</th>
+            <th>Ad</th>
+            <th>Qiymət</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product['id'] }}</td>
+            <td>{{ product['gtin'] }}</td>
+            <td>{{ product['name'] }}</td>
+            <td>{{ product['price'] }} AZN</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <form action="/start" method="POST">
+        <button type="submit">Start</button>
+    </form>
+    <br>
+    <a href="/logout">Çıxış</a>
+    {% if get_flashed_messages() %}
+        <div style="color: green;">
+            {% for message in get_flashed_messages() %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+</body>
+</html>
